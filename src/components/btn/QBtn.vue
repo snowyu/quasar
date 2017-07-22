@@ -13,7 +13,10 @@
       :style="{width: width}"
     ></div>
 
-    <span class="q-btn-inner row col flex-center">
+    <span
+      class="q-btn-inner row col"
+      :class="textAlignment"
+    >
       <slot v-if="loading" name="loading">
         <q-spinner></q-spinner>
       </slot>
@@ -63,7 +66,11 @@ export default {
 
     loader: Boolean,
     percentage: Number,
-    darkPercentage: Boolean
+    darkPercentage: Boolean,
+    alignment: {
+      type: String,
+      default: 'center'
+    }
   },
   data () {
     return {
@@ -122,6 +129,9 @@ export default {
       }
 
       return cls
+    },
+    textAlignment () {
+      return 'flex-' + this.alignment
     }
   },
   methods: {
